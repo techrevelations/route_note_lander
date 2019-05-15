@@ -29,13 +29,12 @@ class App extends Component {
               {tracks.map(track => {
                 let popular = track.rating * 20
                 return (
-                  <div>
-                    <h2>{track.song} </h2>
-                    {millisToMinutesAndSeconds(track.length)}
-                    {` `}
+                  <div id='SongCard'>
+                    <h3 id='Song_Title'>{track.song} </h3>
+                    <div id='Length'>{millisToMinutesAndSeconds(track.length)}</div>
                     <div id='bar'>
                       <div id='popularity' style={{ width: popular }}>
-                        {track.rating * 10}%{' '}
+                        {/* {track.rating * 10}%{' '} */}
                       </div>
                     </div>
                     <img id='albumPic' title={`Release Date ${track.released}`} src={track.album} alt='pic' />

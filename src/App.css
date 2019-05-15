@@ -2,7 +2,7 @@
 	text-align: center;
 	font-family: 'HKGroteskRegular';
 	background-color: #abdde3;
-	height: 300vh;
+	height: 1000px;
 	display: grid;
 	grid-template-columns: 100%;
 	grid-template-rows: 100%;
@@ -12,22 +12,41 @@
 #All {
 	grid-area: All;
 	display: grid;
-	grid-template-columns: 10% 30% 20% 30% 10%;
-	grid-template-rows: 100px 20% 70%;
-	grid-template-areas: "User User User Followers Followers" "Button Button Title Pic Pic" "Song Song Song Pic Pic";
+	grid-template-columns: 20% 20% 20% 30% 10%;
+	grid-template-rows: 100px 100px 700px;
+	grid-template-areas: "User User User Followers Followers" "Title Title Button Pic Pic" "Song Song Song Pic Pic";
 }
 #Title {
 	grid-area: Title;
+	text-align: left;
+	margin-left: 50px;
 }
 #Song {
 	grid-area: Song;
 }
 
+#SongCard {
+	display: grid;
+	grid-template-columns: 10% 60% 10% 20%;
+	grid-template-rows: 70px;
+	grid-template-areas: "Cover Song_Title Time Popular";
+}
+#Length {
+	grid-area: Time;
+	margin: 25px;
+	text-align: center;
+}
+
+#Song_Title {
+	grid-area: Song_Title;
+	text-align: left;
+	margin-top: 20px;
+}
 #User {
 	grid-area: User;
 	text-align: left;
 	position: absolute;
-	left: 10px;
+	left: 20px;
 	padding: 10px;
 }
 #Followers {
@@ -43,7 +62,10 @@
 }
 
 #albumPic {
+	grid-area: Cover;
 	width: 60px;
+	margin: 10px;
+	margin-left: 30px;
 }
 #albumPic:hover {
 	opacity: 0.5;
@@ -51,6 +73,9 @@
 	border: double;
 }
 #signIn {
+	text-align: center;
+	width: 150px;
+	height: 50px;
 	background-color: #f199ae;
 	border: groove;
 	border-radius: 2em;
@@ -61,11 +86,6 @@
 	border: double;
 	transition: all 500ms ease;
 }
-.App-logo {
-	animation: App-logo-spin infinite 20s linear;
-	height: 40vmin;
-	pointer-events: none;
-}
 
 #band_image {
 	grid-area: Pic;
@@ -73,34 +93,40 @@
 	border-radius: 50%;
 }
 #bar {
+	grid-area: Popular;
 	width: 200px;
 	background-color: #eef8ef;
+	margin: 10px;
 }
 
 #popularity {
 	background-color: #57c46a;
+	height: 50px;
+	animation: move 2s linear infinite;
+	transition-delay: 1000ms;
+	animation-duration: 4s;
+	-webkit-animation: move 4s ease-in 2s 6;
+	opacity: 0;
 }
 
-.App-header {
-	background-color: #282c34;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+@keyframes move {
+	0% {
+		background-position: 0 0;
+		opacity: 0;
+	}
+	100% {
+		background-position: 50px 50px;
+		opacity: 1;
+	}
 }
 
-.App-link {
-	color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@-webkit-keyframes move {
 	from {
-		transform: rotate(0deg);
+		background-position: 0 0;
+		opacity: 0;
 	}
 	to {
-		transform: rotate(360deg);
+		background-position: 50px 50px;
+		opacity: 1;
 	}
 }
