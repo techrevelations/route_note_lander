@@ -1,18 +1,84 @@
 .App {
 	text-align: center;
 	font-family: 'HKGroteskRegular';
-	background-color: #949ac1;
-	height: 100vh;
+	background-color: #abdde3;
+	height: 300vh;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 100%;
+	grid-template-areas: "All";
 }
 
+#All {
+	grid-area: All;
+	display: grid;
+	grid-template-columns: 10% 30% 20% 30% 10%;
+	grid-template-rows: 100px 20% 70%;
+	grid-template-areas: "User User User Followers Followers" "Button Button Title Pic Pic" "Song Song Song Pic Pic";
+}
+#Title {
+	grid-area: Title;
+}
+#Song {
+	grid-area: Song;
+}
+
+#User {
+	grid-area: User;
+	text-align: left;
+	position: absolute;
+	left: 10px;
+	padding: 10px;
+}
+#Followers {
+	grid-area: Followers;
+	width: 150px;
+	background-color: #f199ae;
+	border: groove;
+	border-radius: 2em;
+	color: white;
+	padding: 10px;
+	position: absolute;
+	right: 10px;
+}
+
+#albumPic {
+	width: 60px;
+}
+#albumPic:hover {
+	opacity: 0.5;
+	transition-duration: 1000ms;
+	border: double;
+}
 #signIn {
-	background-color: #abe1b4;
-	padding: '20px';
+	background-color: #f199ae;
+	border: groove;
+	border-radius: 2em;
+	color: white;
+}
+#signIn:hover {
+	background-color: #f8cdd6;
+	border: double;
+	transition: all 500ms ease;
 }
 .App-logo {
 	animation: App-logo-spin infinite 20s linear;
 	height: 40vmin;
 	pointer-events: none;
+}
+
+#band_image {
+	grid-area: Pic;
+	border: double;
+	border-radius: 50%;
+}
+#bar {
+	width: 200px;
+	background-color: #eef8ef;
+}
+
+#popularity {
+	background-color: #57c46a;
 }
 
 .App-header {

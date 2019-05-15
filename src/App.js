@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import queryString from 'query-string'
+import millisToMinutesAndSeconds from './components/index'
 
 import './App.css'
 
@@ -19,8 +20,29 @@ class App extends Component {
     return (
       <div className='App'>
         {this.state.user ? (
-          <div>
-            <h1>A Webpage By Christopher Smith</h1>
+          <div id='All'>
+            <h3 id='User'>Welcome {this.state.user.display_name}</h3>
+            <h3 id='Followers'>{this.state.user.followers.total} followers</h3>
+            <h1 id='Title'>{artist}</h1>
+            <img id='band_image' src={imageUrl} alt='band' />
+            <div id='Song'>
+              {tracks.map(track => {
+                let popular = track.rating * 20
+                return (
+                  <div>
+                    <h2>{track.song} </h2>
+                    {millisToMinutesAndSeconds(track.length)}
+                    {` `}
+                    <div id='bar'>
+                      <div id='popularity' style={{ width: popular }}>
+                        {track.rating * 10}%{' '}
+                      </div>
+                    </div>
+                    <img id='albumPic' title={`Release Date ${track.released}`} src={track.album} alt='pic' />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         ) : (
           <button
@@ -30,7 +52,7 @@ class App extends Component {
                 ? 'http://localhost:8888/login'
                 : 'https://route-note-lander-be.herokuapp.com/login'
             }}
-            style={{ padding: '20px', fontSize: '50px', marginTop: '20px' }}
+            style={{ padding: '20px', fontSize: '30px', marginTop: '20px' }}
           >
             Login To Spotify
           </button>
@@ -79,7 +101,8 @@ class App extends Component {
               song: track.name,
               released: track.album.release_date,
               length: track.duration_ms,
-              rating: track.popularity
+              rating: track.popularity,
+              album: track.album.images[0].url
             }
           })
         })
