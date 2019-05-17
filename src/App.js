@@ -19,9 +19,11 @@ class App extends Component {
 
     return (
       <div className='App'>
-        {this.state.user ? (
+        {this.state.user && this.state.tracks.length > 0 ? (
           <div id='All'>
-            <h3 id='User'>Welcome {this.state.user.display_name}</h3>
+            <h3 id='User'>
+              Welcome {this.state.user.display_name} {console.log(this.state.user)}
+            </h3>
             <h3 id='Followers'>{this.state.user.followers.total} followers</h3>
             <button id='Follow_Us' onClick={() => this.handleClick('0Q5FNNZ8ieJV9q0YR9boTY', this.state.user.id)}>
               Follow On Spotify
@@ -34,7 +36,15 @@ class App extends Component {
                 let popular = track.rating * 20
                 return (
                   <div id='SongCard'>
-                    <h3 id='Song_Title'>{track.song} </h3>
+                    <input
+                      type='button'
+                      id='Song_Title'
+                      value={track.song}
+                      title='Preview Track'
+                      onClick={function () {
+                        window.open(`${track.audio}`)
+                      }}
+                    />
                     <div id='Length'>{millisToMinutesAndSeconds(track.length)}</div>
                     <div id='bar'>
                       <div id='popularity' style={{ width: popular }}>
@@ -66,7 +76,7 @@ class App extends Component {
   componentDidMount () {
     let parsed = queryString.parse(window.location.search)
     let accessToken = parsed.access_token
-    // console.log(accessToken)
+    console.log(accessToken)
     if (!accessToken) return
     else {
       fetch('https://api.spotify.com/v1/me', {
@@ -105,7 +115,8 @@ class App extends Component {
               released: track.album.release_date,
               length: track.duration_ms,
               rating: track.popularity,
-              album: track.album.images[0].url
+              album: track.album.images[0].url,
+              audio: track.preview_url
             }
           })
         })

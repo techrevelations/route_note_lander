@@ -1,6 +1,7 @@
 .App {
 	text-align: center;
-	font-family: 'HKGroteskRegular';
+	/* font-family: 'hk_grotesk', normal; */
+
 	background-color: #fbfbfd;
 	height: 1000px;
 	display: grid;
@@ -43,7 +44,7 @@
 	color: #293583;
 	font-weight: bold;
 	font-size: 1.825rem;
-	font-family: 'HK Grotesk';
+	/* font-family: 'HK Grotesk'; */
 }
 
 #Followed_By {
@@ -76,8 +77,12 @@
 #Song_Title {
 	grid-area: Song_Title;
 	text-align: left;
-	margin-top: 20px;
+	margin: 10px;
 	color: #293583;
+	font-size: 1.4375rem;
+	border: thick;
+	border-style: ridge;
+	margin-right: 140px;
 }
 
 #Song_Title:hover {
@@ -89,36 +94,10 @@
 	grid-area: User;
 	text-align: left;
 	position: absolute;
-	font-size: 1.5em;
+	font-size: 1.825rem;
 	left: 50px;
 	padding: 10px;
-	color: rgba(255, 255, 255, 0);
-	background: -webkit-gradient(linear, left top, right top, from(black), to(black), color-stop(0.5, #fff));
-	-webkit-background-size: 125px 100%;
-	background-size: 425px 100%;
-	-webkit-background-clip: text;
-	-webkit-animation-name: shimmer;
-	-webkit-animation-duration: 6s;
-	-webkit-animation-iteration-count: infinite;
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	background-color: #222;
-}
-@-webkit-keyframes shimmer {
-	0% {
-		background-position: top left;
-	}
-	100% {
-		background-position: top right;
-	}
-}
-@keyframes shimmer {
-	0% {
-		background-position: top left;
-	}
-	100% {
-		background-position: top right;
-	}
+	color: #293583;
 }
 
 #Followers {
@@ -146,7 +125,7 @@
 }
 #albumPic:hover {
 	opacity: 0.5;
-	transition-duration: 1000ms;
+	transition-duration: 100ms;
 	border: double;
 }
 #signIn {
