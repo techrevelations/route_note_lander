@@ -121,7 +121,8 @@
 	text-align: center;
 	color: #293583;
 	font-weight: bold;
-	border: inset;
+	border: thick;
+	border-style: ridge;
 	border-radius: 50%;
 	font-size: 1rem;
 }
