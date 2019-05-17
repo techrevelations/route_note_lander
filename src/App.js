@@ -9,7 +9,8 @@ class App extends Component {
     super()
     this.state = {
       // user: '',
-      tracks: []
+      tracks: [],
+      album: []
     }
   }
   render () {
@@ -19,12 +20,13 @@ class App extends Component {
 
     return (
       <div className='App'>
-        {this.state.user && this.state.tracks.length > 0 ? (
+        {this.state.user && this.state.album.length > 0 && this.state.tracks.length > 0 ? (
           <div id='All'>
             <h3 id='User'>
               Welcome {this.state.user.display_name} {console.log(this.state.user)}
             </h3>
-            <h3 id='Followers'>{this.state.user.followers.total} followers</h3>
+            <h5 id='Followers'>{this.state.user.followers.total} followers</h5>
+
             <button id='Follow_Us' onClick={() => this.handleClick('0Q5FNNZ8ieJV9q0YR9boTY', this.state.user.id)}>
               Follow On Spotify
             </button>
@@ -40,18 +42,63 @@ class App extends Component {
                       type='button'
                       id='Song_Title'
                       value={track.song}
-                      title='Preview Track'
+                      title='Listen Now'
                       onClick={function () {
                         window.open(`${track.audio}`)
                       }}
                     />
-                    <div id='Length'>{millisToMinutesAndSeconds(track.length)}</div>
+                    <div id='Length' title='Duration'>
+                      {millisToMinutesAndSeconds(track.length)}
+                    </div>
                     <div id='bar'>
-                      <div id='popularity' style={{ width: popular }}>
+                      <div id='popularity' title='Popularity' style={{ width: popular }}>
                         {/* {track.rating * 10}%{' '} */}
                       </div>
                     </div>
                     <img id='albumPic' title={`Release Date ${track.released}`} src={track.album} alt='pic' />
+                  </div>
+                )
+              })}
+            </div>
+            <h5 id='about'>
+              Boat to Row are: (L-R) Dan Cippico, Ben Gilchrist, Lydia Glanville, Michael King “a band to get your ears
+              involved with” - THIS IS FAKE DIY ​ “simply wonderful” - JANICE LONG BBC RADIO 2 ​ “one of the West
+              Midlands most exquisitely talented folk acts” - BRUMNOTES MAGAZINE ​<br /> <br /> Following the release of
+              their debut album ‘I Found You Here’ in 2015, Boat to Row have found themselves overcoming many different
+              obstacles record their second album. From line up changes and corrupted hard drives, to losing their
+              practice space when the legendary Highbury Studios closed, the creative flow has not been easily followed.
+              <br />
+              <br />​ Despite all of this, ‘Rivers That Flow in Circles’ is an album that sees the band pushing their
+              horizons. Self-produced and recorded in a variety of rehearsal rooms, bedrooms and kitchens, the record
+              showcases the bands most ambitious songs yet. Drawing on band members both past and present, as well as
+              many other musicians from the Birmingham scene, this is an album which works from a diverse musical
+              pallet.
+              <br />
+              <br />
+              The first single from the record, ‘Spanish Moss’ is a fantastic example of the band’s growth as African
+              percussion meets wirey electric guitars over the top of a hypnotic bass line. Just as the song reaches a
+              crescendo it dissolves into a spacious instrumental, where a soaring violin twists and turns over a sea of
+              guitars and synthesisers. Freeing themselves from the constraints of hourly studio rates has been a gift
+              which has allowed the band to turn in an album that is more adventurous and expansive than its
+              predecessor.
+              <br /> <br />
+              Boat to Row have previously been supported by BBC 6 Music and Radio 2 and many local stations, and
+              received glowing reviews from websites as diverse as DIY, The 405, Counteract, Folk Radio UK and Gold
+              Flake Paint. They have toured extensively appearing with acts including Slow Club, Johnny Flynn, Willy
+              Mason, Ryley Walker, Kate Rusby, Sweet Baboo and graced stages at many of the country’s favourite
+              festivals including Glastonbury, Cambridge Folk, Green Man, Truck, Wood, Moseley Folk, Y Not and No
+              Direction Home. Look out for more of their enrapturing live show throughout 2019.
+            </h5>
+            <h1 id='Albums'>Albums</h1>
+            <div id='Album'>
+              {this.state.album.map(album => {
+                let year = album.released
+                let newYear = year.slice(0, 4)
+                return (
+                  <div id='AlbumCard'>
+                    <img id='AlbumPics' title={`Release Date ${album.released}`} src={album.cover.url} alt='pic' />
+                    <h5 id='AlbumName'>{album.album_Name}</h5>
+                    <h5 id='AlbumReleased'>Released in {newYear} </h5>
                   </div>
                 )
               })}
@@ -116,7 +163,23 @@ class App extends Component {
               length: track.duration_ms,
               rating: track.popularity,
               album: track.album.images[0].url,
-              audio: track.preview_url
+              audio: track.external_urls.spotify
+            }
+          })
+        })
+      )
+    fetch('https://api.spotify.com/v1/artists/0Q5FNNZ8ieJV9q0YR9boTY/albums?country=GB', {
+      headers: { Authorization: 'Bearer ' + accessToken }
+    })
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          album: data.items.map(album => {
+            console.log(data.items)
+            return {
+              album_Name: album.name,
+              released: album.release_date,
+              cover: album.images[0]
             }
           })
         })

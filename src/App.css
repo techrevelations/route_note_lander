@@ -13,12 +13,59 @@
 #All {
 	grid-area: All;
 	display: grid;
-	grid-template-columns: 12% 28% 20% 30% 10%;
-	grid-template-rows: 100px 100px 700px;
-	grid-template-areas: "User User User Followers Followers" "Title Followed_By Follow_Us Pic Pic"
-		"Song Song Song Pic Pic";
+	grid-template-columns: 20% 20% 20% 30% 10%;
+	grid-template-rows: 80px 20px 80px 20px 700px 80px 500px;
+	grid-template-areas: "User User User User User" "Followers Followers Followers Followers Followers"
+		"Title Follow_Us Follow_Us Pic Pic" "Followed_By Followed_By Followed_By Followed_By Followed_By"
+		"Song Song Song about about" "Album Album Album Album Album" "AlbumCard AlbumCard AlbumCard AlbumCard AlbumCard";
 }
 
+#Albums {
+	grid-area: Album;
+	text-align: left;
+	padding-left: 60px;
+	/* margin-top: 50px; */
+	color: #293583;
+	font-weight: bold;
+	font-size: 1.825rem;
+	background-color: #fcebef;
+	margin-bottom: 0px;
+	padding-top: 10px;
+}
+
+#Album {
+	grid-area: AlbumCard;
+	display: flex;
+	flex-direction: row;
+	padding-left: 50px;
+	background-color: #fcebef;
+}
+
+#AlbumCard {
+	padding-top: 20px;
+	padding: 10px;
+}
+#AlbumPics {
+	width: 250px;
+	border: thick;
+	border-style: ridge;
+}
+
+#about {
+	grid-area: about;
+	overflow-x: scroll;
+	width: 645px;
+	margin-top: 500px;
+	line-height: 1.5625rem;
+}
+#AlbumName {
+	color: #293583;
+}
+#AlbumReleased {
+	color: #293583;
+	font-size: 0.775rem;
+	font-weight: normal;
+}
 #Follow_Us {
 	grid-area: Follow_Us;
 	width: 200px;
@@ -26,8 +73,9 @@
 	border: thick;
 	border-radius: 2em;
 	color: white;
-	margin: 20px;
-	margin-left: 170px;
+	font-weight: bold;
+	margin: 10px;
+
 	font-size: 1.2em;
 }
 
@@ -50,8 +98,10 @@
 #Followed_By {
 	grid-area: Followed_By;
 	font-style: italic;
-	margin-top: 35px;
+	margin-top: 0px;
+	padding-left: 60px;
 	text-align: left;
+	color: #293583;
 }
 #Song {
 	grid-area: Song;
@@ -60,19 +110,23 @@
 
 #SongCard {
 	display: grid;
-	grid-template-columns: 10% 40% 20% 30%;
+	grid-template-columns: 10% 42% 6% 42%;
 	grid-template-rows: 70px;
 	grid-template-areas: "Cover Song_Title Time Popular";
 }
 #Length {
 	grid-area: Time;
-	margin: 25px;
+	margin: 5px;
+	padding-top: 20px;
 	text-align: center;
 	color: #293583;
 	font-weight: bold;
+	border: inset;
+	border-radius: 50%;
+	font-size: 1rem;
 }
 #Length:hover {
-	font-size: 1.5em;
+	font-size: 1.125rem;
 	transition-duration: 500ms;
 }
 
@@ -84,12 +138,11 @@
 	font-size: 1.125rem;
 	border: thick;
 	border-style: ridge;
-	margin-right: 50px;
 	font-weight: bold;
 }
 
 #Song_Title:hover {
-	font-size: 1.5em;
+	font-size: 1.25em;
 	transition-duration: 500ms;
 }
 
@@ -98,26 +151,27 @@
 	text-align: left;
 	position: absolute;
 	font-size: 1.4375rem;
-	left: 50px;
-	padding: 10px;
-	color: #293583;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 60px;
+	padding-top: 20px;
+	background-color: #293583;
+	height: 60px;
+	width: 100%;
+	color: white;
 }
 
 #Followers {
 	grid-area: Followers;
-
-	width: 150px;
-	height: 150px;
-	background-color: #f199ae;
-	border: thick;
-	border-radius: 100%;
+	text-align: left;
+	font-style: italic;
 	color: white;
-	padding: 10px;
-	position: absolute;
-	top: -10px;
-	margin: 30px;
-	padding: 20px;
-	right: -30px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 100%;
+	padding-left: 60px;
+	background-color: #293583;
+	height: 20px;
 }
 
 #albumPic {
@@ -129,7 +183,8 @@
 #albumPic:hover {
 	opacity: 0.5;
 	transition-duration: 100ms;
-	border: double;
+	border: inset;
+	border-style: thick;
 }
 #signIn {
 	text-align: center;
@@ -150,9 +205,12 @@
 
 #band_image {
 	grid-area: Pic;
-	border: double;
+	border: inset;
+	border-style: thick;
 	border-radius: 50%;
-	margin: 50px;
+	margin-top: -50px;
+	z-index: 1;
+	/* margin: 50px; */
 }
 #bar {
 	grid-area: Popular;
