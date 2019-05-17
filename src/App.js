@@ -128,8 +128,8 @@ class App extends Component {
     let accessToken = parsed.access_token
     console.log(band_Id, userId)
     axios({
-      method: 'POST',
-      url: `https://api.spotify.com/v1/me/following?type=user&id=${band_Id}`,
+      method: 'PUT',
+      url: `https://api.spotify.com/v1/me/following?type=artist&ids=${band_Id}`,
       headers: {
         Authorization: 'Bearer ' + accessToken
       }

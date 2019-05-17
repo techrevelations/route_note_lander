@@ -60,7 +60,7 @@
 
 #SongCard {
 	display: grid;
-	grid-template-columns: 10% 60% 10% 20%;
+	grid-template-columns: 10% 40% 20% 30%;
 	grid-template-rows: 70px;
 	grid-template-areas: "Cover Song_Title Time Popular";
 }
@@ -68,6 +68,8 @@
 	grid-area: Time;
 	margin: 25px;
 	text-align: center;
+	color: #293583;
+	font-weight: bold;
 }
 #Length:hover {
 	font-size: 1.5em;
@@ -79,10 +81,11 @@
 	text-align: left;
 	margin: 10px;
 	color: #293583;
-	font-size: 1.4375rem;
+	font-size: 1.125rem;
 	border: thick;
 	border-style: ridge;
-	margin-right: 140px;
+	margin-right: 50px;
+	font-weight: bold;
 }
 
 #Song_Title:hover {
@@ -94,7 +97,7 @@
 	grid-area: User;
 	text-align: left;
 	position: absolute;
-	font-size: 1.825rem;
+	font-size: 1.4375rem;
 	left: 50px;
 	padding: 10px;
 	color: #293583;
